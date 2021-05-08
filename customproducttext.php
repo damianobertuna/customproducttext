@@ -40,10 +40,6 @@ class Customproducttext extends Module
         $this->author = 'DAMIANO BERTUNA';
         $this->need_instance = 0;
         $this->_html = '';
-
-        /**
-         * Set $this->bootstrap to true if your module is compliant with bootstrap (PrestaShop 1.6)
-         */
         $this->bootstrap = true;
 
         parent::__construct();
@@ -54,47 +50,21 @@ class Customproducttext extends Module
         $this->ps_versions_compliancy = array('min' => '1.7', 'max' => _PS_VERSION_);
     }
 
-    /**
-     * Don't forget to create update methods if needed:
-     * http://doc.prestashop.com/display/PS16/Enabling+the+Auto-Update
-     */
     public function install()
     {
-        //Configuration::updateValue('CUSTOMPRODUCTTEXT_LIVE_MODE', false);
         include(dirname(__FILE__).'/sql/install.php');
 
         return parent::install() &&
             $this->registerHook('displayAdminProductsExtra') &&
-            $this->registerHook('adminControllerSetMedia') &&
-            $this->registerHook('header') &&
-            $this->registerHook('backOfficeHeader') &&
+            $this->registerHook('actionAdminControllerSetMedia') &&
             $this->registerHook('displayProductAdditionalInfo') &&
-            $this->registerHook('actionProductDelete') &&            
-            $this->registerHook('displayProductButtons');
+            $this->registerHook('actionProductDelete');            
     }
 
     public function uninstall()
     {
         include(dirname(__FILE__).'/sql/uninstall.php');
         return parent::uninstall();
-    }
-
-    /**
-     * Load the configuration form
-     */
-    public function getContent()
-    {
-        /**
-         * If values have been submitted in the form, process.
-         */
-        if (((bool)Tools::isSubmit('submitShowweatherforecastModule')) == true) {
-            $this->postProcess();
-        }
-
-        $this->context->smarty->assign('module_dir', $this->_path);
-
-        $output .= $this->_html;
-        return $output;
     }
 
     /**
@@ -162,15 +132,8 @@ class Customproducttext extends Module
         return;
     }
 
-    /**
-    * Add the CSS & JavaScript files you want to be loaded in the BO.
-    */
-    public function hookBackOfficeHeader()
-    {
-    }
-
     public function hookActionAdminControllerSetMedia()
-    {
+    {        
         if (Tools::getValue('controller') == "AdminProducts") {
             $this->context->controller->addJS($this->_path.'views/js/back.js');
             $this->context->controller->addCSS($this->_path.'views/css/back.css');
@@ -185,18 +148,6 @@ class Customproducttext extends Module
         if ($result) {
             return true;
         }
-
         return false;
-    }
-
-    /**
-     * Add the CSS & JavaScript files you want to be added on the FO.
-     */
-    public function hookHeader()
-    {        
-    }
-
-    public function hookDisplayProductButtons()
-    {
     }
 }
