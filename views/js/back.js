@@ -36,20 +36,16 @@ jQuery(document).ready(function() {
             data: {	"idProduct"  : idProduct, "customText" : customText, "idEmployee" : idEmployee, "secureToken"  :  secureToken},
             success: function(data) {
                         if (data) {
-                            console.log("success "+data);
                             jQuery("#returnStatus").text(settingUpdated);
                             jQuery("#returnStatus").removeClass("bg-danger");
-                            jQuery("#returnStatus").addClass("bg-success");
-                            jQuery("#returnStatus").show("");
-                            setTimeout(function(){ jQuery("#returnStatus").hide(""); }, 3000);
-                        } else {
-                            console.log("danger "+data);
+                            jQuery("#returnStatus").addClass("bg-success");                            
+                        } else {                            
                             jQuery("#returnStatus").text(updateFailed);
                             jQuery("#returnStatus").removeClass("bg-success");
-                            jQuery("#returnStatus").addClass("bg-danger");
-                            jQuery("#returnStatus").show("");
-                            setTimeout(function(){ jQuery("#returnStatus").hide(""); }, 3000);
+                            jQuery("#returnStatus").addClass("bg-danger");                            
                         }
+                        jQuery("#returnStatus").show("");
+                        setTimeout(function(){ jQuery("#returnStatus").hide(""); }, 3000);
                     },
         });
     });

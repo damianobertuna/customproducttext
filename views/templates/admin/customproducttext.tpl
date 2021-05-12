@@ -8,12 +8,11 @@
 </div>
 
 {literal}
-
 <script>
-		var idProduct = "{/literal}{$idProduct|escape:'htmlall':'UTF-8'}{literal}";
-		var secureToken = "{/literal}{$secureToken|escape:'htmlall':'UTF-8'}{literal}";    
+	var idProduct = "{/literal}{$idProduct|escape:'htmlall':'UTF-8'}{literal}";
+	var secureToken = "{/literal}{$secureToken|escape:'htmlall':'UTF-8'}{literal}";    
     var idEmployee = "{/literal}{$idEmployee|escape:'htmlall':'UTF-8'}{literal}";
     var settingUpdated = "{/literal}{l s='Setting updated' mod='customproducttext'}{literal}";
-		var updateFailed = "{/literal}{l s='Update failed' mod='customproducttext'}{literal}";
+	var updateFailed = "{/literal}{l s='Update failed' mod='customproducttext'}{literal}";
 </script>
 {/literal}
